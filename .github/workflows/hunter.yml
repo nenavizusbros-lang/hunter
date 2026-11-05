@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
@@ -29,4 +31,5 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add seen.json gmail_live.txt || true
           git commit -m "auto-update state" || true
-          git push
+          git pull --rebase || true
+          git push || true
